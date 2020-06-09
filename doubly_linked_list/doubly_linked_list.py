@@ -73,29 +73,66 @@ class DoublyLinkedList:
     as the new tail of the list. Don't forget to handle 
     the old tail node's next pointer accordingly."""
     def add_to_tail(self, value):
-        pass
+        new_node = ListNode(value)
+        self.length += 1
+        if not self.head and not self.tail:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.prev = self.tail
+            self.tail.next = new_node
+            self.tail = new_node
 
     """Removes the List's current tail node, making the 
     current tail's previous node the new tail of the List.
     Returns the value of the removed Node."""
     def remove_from_tail(self):
-        pass
+        value = self.tail.value
+        self.delete(self.tail)
+        return value
 
     """Removes the input node from its current spot in the 
     List and inserts it as the new head node of the List."""
     def move_to_front(self, node):
-        pass
+        # check to see if node is already the head
+        if node is self.head:
+            return None
+        self.add_to_head(node.value)
+        self.delete(node)
 
     """Removes the input node from its current spot in the 
     List and inserts it as the new tail node of the List."""
     def move_to_end(self, node):
-        pass
+        if node is self.tail:
+            return None
+        self.add_to_tail(node.value)
+        self.delete(node)
 
     """Removes a node from the list and handles cases where
     the node was the head or the tail"""
     def delete(self, node):
-        pass
+        if not self.head and not self.tail:
+            return None
+        self.length -= 1
+        #check if head and tail are the same, if so only one node
+        if self.head is self.tail:
+            self.head = None
+            self.tail = None
+        # check if the node is the head, move the head reference
+        elif node is self.head:
+            self.head = node.next
+            node.delete()
+        # otherwise there's nothing to update
+        else: node.delete()
+            
         
     """Returns the highest value currently in the list"""
     def get_max(self):
-        pass
+        max = self.head.value
+        current = self.head
+        while current is not None:
+            if current.value > max:
+                max = current.value
+            else:
+                current = current.next
+        return max
