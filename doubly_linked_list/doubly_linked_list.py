@@ -28,8 +28,10 @@ class ListNode:
     accordingly, effectively deleting this ListNode."""
     def delete(self):
         if self.prev:
+            # have this node's previous point to this nodes next
             self.prev.next = self.next
         if self.next:
+            # have this node's next point to this nodes previous
             self.next.prev = self.prev
 
 
