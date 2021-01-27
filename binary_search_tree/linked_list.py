@@ -46,6 +46,7 @@ class LinkedList:
             return None
         # save the tail Node's data
         data = self.tail.get_value()
+        self.tail = None
         # both head and tail refer to the same Node 
         # there's only one Node in the linked list 
         if self.head is self.tail:
@@ -120,8 +121,11 @@ class LinkedList:
     def get_max(self):
         if self.head is None:
             return None
+        #current value is the max we've seen so far below
         max_so_far = self.head.get_value()
+        
         current = self.head.get_next()
+        
         while current is not None:
             if current.get_value() > max_so_far:
                 max_so_far = current.get_value()

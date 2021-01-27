@@ -31,7 +31,7 @@ class ListNode:
             # have this node's previous point to this nodes next
             self.prev.next = self.next
         if self.next:
-            # have this node's next point to this nodes previous
+            # have this node's next point to this nodes
             self.next.prev = self.prev
 
 
